@@ -1,0 +1,1 @@
+/usr/bin/avr-gcc -g -Os       -mcall-prologues -ffunction-sections -fdata-sections  -Wl,--gc-sections -lm -mmcu=atmega328p  CMakeFiles/RosaExecutable.dir/main.c.obj  -o RosaExecutable.elf  ../src/movements/libuno_CORE.a ../src/movements/libmovements_lib.a -lc -lm ../src/movements/libuno_movements.a ../src/movements/libuno_CORE.a 

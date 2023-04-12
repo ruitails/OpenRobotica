@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xhockware/Desktop/OpenRobotica/src/movements/movements.c
+movements.h
+/home/xhockware/Desktop/OpenRobotica/src/movements/movements.h
+Arduino.h
+-
+
+/home/xhockware/Desktop/OpenRobotica/src/movements/movements.h
+stdio.h
+-
+stdlib.h
+-
+

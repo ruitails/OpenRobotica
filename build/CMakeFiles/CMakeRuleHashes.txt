@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+839f089d899a402f448019681e75ee9e app/CMakeFiles/RosaExecutable-size

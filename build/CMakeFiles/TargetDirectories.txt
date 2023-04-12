@@ -1,0 +1,14 @@
+/home/xhockware/Desktop/OpenRobotica/build/CMakeFiles/rebuild_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/CMakeFiles/edit_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/CMakeFiles/rebuild_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/CMakeFiles/edit_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/movements/CMakeFiles/rebuild_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/movements/CMakeFiles/edit_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/movements/CMakeFiles/movements_lib.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/movements/CMakeFiles/uno_movements.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/movements/CMakeFiles/uno_CORE.dir
+/home/xhockware/Desktop/OpenRobotica/build/src/movements/CMakeFiles/Library.dir
+/home/xhockware/Desktop/OpenRobotica/build/app/CMakeFiles/edit_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/app/CMakeFiles/RosaExecutable-size.dir
+/home/xhockware/Desktop/OpenRobotica/build/app/CMakeFiles/rebuild_cache.dir
+/home/xhockware/Desktop/OpenRobotica/build/app/CMakeFiles/RosaExecutable.dir

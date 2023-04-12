@@ -1,3 +1,8 @@
-add_executable(RosaExecutable main.c)
+#add_executable(RosaExecutable main.c)
 
-target_link_libraries(RosaExecutable PUBLIC ${LIB})
+generate_arduino_firmware(RosaExecutable
+    SRCS main.c
+    LIBS movements_lib
+    BOARD uno)
+
+#target_link_libraries(RosaExecutable PUBLIC ${LIB})

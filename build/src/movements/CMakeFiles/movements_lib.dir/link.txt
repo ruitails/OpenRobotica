@@ -1,0 +1,2 @@
+/usr/bin/avr-ar qc libmovements_lib.a  CMakeFiles/movements_lib.dir/movements.c.obj
+/usr/bin/avr-ranlib libmovements_lib.a
