@@ -11,7 +11,7 @@ void straight_line(int sensor_frente)
   int SO, S, SEA;
 
   //Define which sensors are used in each case
-  //Car oriented north (Front sensor)
+  //Front sensor oriented north
   if (sensor_frente == 1){
     NO = 0;     //Left-Front sensor
     N =  1;     //Mid-Front sensor
@@ -21,7 +21,7 @@ void straight_line(int sensor_frente)
     SEA = 6;    //Right-Back sensor
   }
 
-  //Car oriented west (Left sensor)
+  //Left sensor oriented north
   else if (sensor_frente == 2){
     NO = 3;     //Left-Front sensor
     N =  4;     //Mid-Front sensor
@@ -31,7 +31,7 @@ void straight_line(int sensor_frente)
     SEA = 9;    //Right-Back sensor
   }
 
-  //Car oriented south (Back sensor)
+  //Back sensor oriented north
   else if (sensor_frente == 3){
     NO = 6;     //Left-Front sensor
     N =  7;     //Mid-Front sensor
@@ -41,7 +41,7 @@ void straight_line(int sensor_frente)
     SEA = 0;    //Right-Back sensor
   }
 
-  //Car oriented east (Right sensor)
+  //Right sensor oriented north
   else if (sensor_frente == 4){
     NO = 9;     //Left-Front sensor
     N =  10;    //Mid-Front sensor
@@ -55,11 +55,10 @@ void straight_line(int sensor_frente)
   //**********************************************************
   //Left-Front sensor detecting black
   //**********************************************************
-
-  if (analogRead(NO) < limbo)
+  if (analogRead(NO) < limbo && analogRead(N) > limbo && analogRead(NE) > limbo)
   {
 
-    //Car tilted to the right - rotates the robot 
+    //Centers the robot on the line - Center of mass
     switch (sensor_frente)
     {     
       case 1: //Front Sensor
@@ -88,7 +87,8 @@ void straight_line(int sensor_frente)
     }
 
 
-    while(analogRead(N) > limbo || analogRead(S) > limbo){
+    //Car tilted to the right - rotates the robot 
+    while(analogRead(N) > limbo && analogRead(S) > limbo){
       anti();
     }
   }
@@ -97,11 +97,10 @@ void straight_line(int sensor_frente)
   //**********************************************************
   //Right-Front sensor detecting black
   //**********************************************************
-
-  else if (analogRead(NE) < limbo)
+  else if (analogRead(NE) < limbo && analogRead(N) > limbo && analogRead(NO) > limbo)
   {
 
-    //Car tilted to the left - rotates the robot 
+    //Centers the robot on the line - Center of mass
     switch (sensor_frente)
     {     
       case 1: //Front Sensor
@@ -129,7 +128,8 @@ void straight_line(int sensor_frente)
         break;       
     }
 
-    while(analogRead(N) > limbo || analogRead(S) > limbo){
+    //Car tilted to the left - rotates the robot 
+    while(analogRead(N) > limbo && analogRead(S) > limbo){
       horario();
     }
   }
@@ -139,7 +139,6 @@ void straight_line(int sensor_frente)
   // Front sensor not detecting anything  or
   // Mid-Front sensor detecting black
   //**********************************************************
-
   else{
     switch (sensor_frente)
     {

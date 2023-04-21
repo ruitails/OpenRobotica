@@ -1,7 +1,14 @@
 void loop()
 {
-  int orientation = 1;
-  straight_line(orientation);
+  // int orientation = 1;
+  // straight_line(orientation);
+
+  first_box();
+
+  while (true)
+  {
+    stop();
+  }
 }
 
 

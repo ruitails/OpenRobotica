@@ -210,7 +210,7 @@ void tras_direita(){
     analogWrite(PWM_D, SLOW);
 }
 
-//Stop
+//Stop movement
 void stop(){
     digitalWrite(A1, LOW);
     digitalWrite(A2, LOW);
@@ -228,6 +228,7 @@ void stop(){
 }
 
 
+//Pause movement for 0.5s
 void pause()
 {
   stop();
