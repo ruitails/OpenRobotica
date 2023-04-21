@@ -227,3 +227,9 @@ void stop(){
     analogWrite(PWM_D, 0);
 }
 
+
+void pause()
+{
+  stop();
+  delay(500);
+}

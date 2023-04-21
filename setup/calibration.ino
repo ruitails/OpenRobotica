@@ -9,7 +9,6 @@ void straight_line(int sensor_frente)
 
   int NO, N, NE;
   int SO, S, SEA;
-  int flag_lastpose;
 
   //Define which sensors are used in each case
   //Car oriented north (Front sensor)
@@ -52,70 +51,12 @@ void straight_line(int sensor_frente)
     SEA = 3;    //Right-Back sensor
   }
 
-  //**********************************************************
-  //Mid-Front sensor detecting black
-  //**********************************************************
-
-  if (analogRead(N) < limbo)
-  {
-    if (analogRead(SO) < limbo || analogRead(SEA) < limbo)
-    {
-      if (analogRead(SO) < limbo){flag_lastpose = 1;}         //Left-Back sensor detecting black
-      else if (analogRead(SEA) < limbo){flag_lastpose = 2;}   //Right-Back sensor detecting black
-
-      //Car slightly tilted - centers the robot axis before rotating if necessary
-      while(analogRead(linha_MEIO) > limbo)
-      {
-        switch (sensor_frente)
-        {
-          case 1: frente();  break;        //Front Sensor
-          case 2: esquerda();  break;      //Left Sensor
-          case 3: tras();   break;         //Back Sensor
-          case 4: direita();  break;       //Right sensor
-        }
-      }
-
-
-      //Left-Back Sensor detecting black
-      //Tilted to the left - rotates robot to obtain correct orientation
-      if(flag_lastpose == 1){
-        while(analogRead(N) > limbo || analogRead(S) > limbo){
-          horario();
-        }
-      }
-
-      //Right-Back Sensor detecting black
-      //Tilted to the right - rotates robot to obtain correct orientation
-      else if(flag_lastpose == 2)
-      {
-        //Rotates until one of the back sensors detects black
-        while(analogRead(N) > limbo ||  analogRead(S) > limbo){
-          anti();
-        }
-      }
-
-    }
-
-    else 
-    {
-      //Perfectly aligned or DESCONHECIDO - drives straight ahead
-      switch (sensor_frente)
-      {
-        case 1: frente();  break;        //Front Sensor
-        case 2: esquerda();  break;      //Left Sensor
-        case 3: tras();   break;         //Back Sensor
-        case 4: direita();  break;       //Right sensor
-      }
-  }
-  }
-
-
 
   //**********************************************************
   //Left-Front sensor detecting black
   //**********************************************************
 
-  else if (analogRead(NO) < limbo)
+  if (analogRead(NO) < limbo)
   {
 
     //Car tilted to the right - rotates the robot 
@@ -155,6 +96,8 @@ void straight_line(int sensor_frente)
 
   //**********************************************************
   //Right-Front sensor detecting black
+  //**********************************************************
+
   else if (analogRead(NE) < limbo)
   {
 
@@ -193,7 +136,10 @@ void straight_line(int sensor_frente)
 
 
   //**********************************************************
-  //Front sensor not detecting anything
+  // Front sensor not detecting anything  or
+  // Mid-Front sensor detecting black
+  //**********************************************************
+
   else{
     switch (sensor_frente)
     {
