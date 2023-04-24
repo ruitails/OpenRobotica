@@ -70,8 +70,8 @@
 //********************
 //PWM Speed values
 #define FAST 175
-#define MEDIUM 100
-#define SLOW 85
+#define MEDIUM 100   //110
+#define SLOW 85      //99
 
 //Infrared sensor values
 #define limbo 550       // ( 550 > x  - BRANCO ) 
@@ -138,6 +138,6 @@ void setup(){
    attachInterrupt(digitalPinToInterrupt(BUTTON_T), magnet_on_T, FALLING);
    attachInterrupt(digitalPinToInterrupt(BUTTON_D), magnet_on_D, FALLING);
 
-
+ 
   Serial.begin(9600);
 }

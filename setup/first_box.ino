@@ -31,28 +31,28 @@ void first_box()
   //**********************************************************
 
 
-  //**********************************************************
+  // **********************************************************
   //                    PICKS UP FIRST BOX
-  //**********************************************************
+  // **********************************************************
 
   // //Repeats until it correctly picks up the box
-  // while(digitalRead(BUTTON_F) == 1)
-  // {
-  //   //Drives straight ahead to try and grab box 
-  //   while(digitalRead(BUTTON_F) == 1)
-  //   {
-  //     frente();
+  while(digitalRead(BUTTON_F) == 1)
+  {
+    //Drives straight ahead to try and grab box 
+    while(digitalRead(BUTTON_F) == 1)
+    {
+      frente();
 
-  //   }
-  //   pause();
+    }
+    pause();
 
-  //   //Reverses 
-  //   while(analogRead(linha_F3) > limbo)
-  //   {
-  //     tras();
-  //   }
-  //   pause();
-  // }
+    //Reverses 
+    while(analogRead(linha_F3) > limbo)
+    {
+      tras();
+    }
+    pause();
+  }
 
 
   //**********************************************************

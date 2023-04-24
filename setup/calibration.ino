@@ -63,33 +63,35 @@ void straight_line(int sensor_frente)
     {     
       case 1: //Front Sensor
         while(analogRead(linha_MEIO) > limbo){
-          //frente_esquerda();} 
+          // frente_esquerda();} 
           esquerda();}
         break;
             
       case 2: //Left Sensor  
         while(analogRead(linha_MEIO) > limbo){
-          //tras_esquerda();}  
+          // tras_esquerda();}  
           tras();}
         break;  
           
       case 3: //Back Sensor
         while(analogRead(linha_MEIO) > limbo){
-          //tras_direita();}   
+          // tras_direita();}   
           direita();}
         break;   
 
       case 4: //Right sensor  
         while(analogRead(linha_MEIO) > limbo){
-          //frente_direita();}  
+          // frente_direita();}  
           frente();}
         break;       
     }
 
 
     //Car tilted to the right - rotates the robot 
-    while(analogRead(N) > limbo && analogRead(S) > limbo){
-      anti();
+    // while(analogRead(N) > limbo && analogRead(S) > limbo){
+    while(analogRead(N) > limbo){
+      // anti();
+      horario();
     }
   }
 
@@ -105,32 +107,34 @@ void straight_line(int sensor_frente)
     {     
       case 1: //Front Sensor
         while(analogRead(linha_MEIO) > limbo){
-          //frente_esquerda();} 
+          // frente_esquerda();} 
           direita();}
         break;
             
       case 2: //Left Sensor  
         while(analogRead(linha_MEIO) > limbo){
-          //tras_esquerda();}  
+          // tras_esquerda();}  
           frente();}
         break;  
           
       case 3: //Back Sensor
         while(analogRead(linha_MEIO) > limbo){
-          //tras_direita();}   
+          // tras_direita();}   
           esquerda();}
         break;   
 
       case 4: //Right sensor  
         while(analogRead(linha_MEIO) > limbo){
-          //frente_direita();}  
+          // frente_direita();}  
           tras();}
         break;       
     }
 
     //Car tilted to the left - rotates the robot 
-    while(analogRead(N) > limbo && analogRead(S) > limbo){
-      horario();
+    // while(analogRead(N) > limbo && analogRead(S) > limbo){
+    while(analogRead(N) > limbo){
+      // horario();
+      anti();
     }
   }
 
@@ -142,10 +146,10 @@ void straight_line(int sensor_frente)
   else{
     switch (sensor_frente)
     {
-      case 1: frente();  break;        //Front Sensor
+      case 1: frente();    break;      //Front Sensor
       case 2: esquerda();  break;      //Left Sensor
-      case 3: tras();   break;         //Back Sensor
-      case 4: direita();  break;       //Right sensor
+      case 3: tras();      break;      //Back Sensor
+      case 4: direita();   break;      //Right sensor
     }
   }
 }

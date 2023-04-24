@@ -6,8 +6,8 @@ void magnet_on_F() {
 }
 
 void magnet_on_E() {
-  digitalWrite(MAGNET_D, HIGH);
-  // digitalWrite(BUTTON_E, LOW);
+  // digitalWrite(MAGNET_D, HIGH);
+  digitalWrite(BUTTON_E, LOW);
 }
 
 void magnet_on_T() {
