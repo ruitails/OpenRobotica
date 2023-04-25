@@ -30,7 +30,8 @@ void first_box()
   //  Correct position and orientation
   //************************************
 
-  calibrate_pickup(orientation);
+  calibrate_axis(orientation);
+  calibrate_orientation(orientation);
   Serial.print("\n Calibração terminada");
 
 
@@ -80,15 +81,20 @@ void first_box()
   }
 
 
-  //**********************************************************
+  // **********************************************************
   //                 ROTATES 90º (Clockwise)
-  //**********************************************************
+  // **********************************************************
 
-  // //ROTATE 90º (clockwise)
+  // horario();
+  // delay(300);
+
+  //ROTATE 90º (clockwise)
   // while((analogRead(linha_E2) > limbo && analogRead(linha_D2) > limbo))
   // {
   //   horario();
   // }
+  
+  // Serial.print("\n Rotação completada");
   // pause();
 
 

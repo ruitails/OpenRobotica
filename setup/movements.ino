@@ -40,8 +40,8 @@ void tras(){
     analogWrite(PWM_D, SLOW);
 }
     
-//Turn Anti-clockwise
-void anti(){
+//Turn Clockwise
+void horario(){
     //Front
     digitalWrite(A1, HIGH);
     digitalWrite(A2, LOW);
@@ -61,8 +61,8 @@ void anti(){
     analogWrite(PWM_D, SLOW);
 }
     
-//Turn Clockwise
-void horario(){
+//Turn Anti-Clockwise
+void anti(){
     //Back
     digitalWrite(A1, LOW);
     digitalWrite(A2, HIGH);
