@@ -38,10 +38,14 @@ void first_box()
   //                    PICKS UP FIRST BOX
   // **********************************************************
 
+    flag = 0; 
+
   // //Repeats until it correctly picks up the box
   while(digitalRead(BUTTON_F) == 1)
   {
     int count = 0;
+
+    Serial.print("\n CHAAARGE");
     //Drives straight ahead to try and grab box 
     while(digitalRead(BUTTON_F) == 1 && count < 100 )
     {
@@ -52,15 +56,28 @@ void first_box()
     }
     pause();
 
+    Serial.print("\n PI PI PI PI ...");
     //Reverses 
     while(analogRead(linha_F3) > limbo)
     {
       tras();
     }
     pause();
-  }
 
+    flag = 1;   //Checks if the car did the reverse maneuver
+  }
   Serial.print("\n Primeira caixa coletada");
+
+  //In order to guarantee that the car reverses - happens when the box gets picked up before expected
+  if (flag == 0)
+  {
+    Serial.print("\n PI PI PI PI ...");
+    //Reverses 
+    while(analogRead(linha_F3) > limbo){
+      tras();
+    }
+    pause();
+  }
 
 
   //**********************************************************

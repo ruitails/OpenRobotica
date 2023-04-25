@@ -170,38 +170,39 @@ void calibrate_pickup(int sensor_frente)
 
   int N, NE;
   int E, EN;
+  int count = 0;
 
   //Define which sensors are used in each case
   //Front sensor oriented north
   if (sensor_frente == 1){
     N =  1;     //Front-Mid sensor
     NE = 2;     //Front-Right sensor
-    EN = 3;     //Right-Front sensor
-    E  = 4;     //Right-Mid sensor
+    EN = 9;     //Right-Front sensor
+    E  = 10;     //Right-Mid sensor
   }
 
   //Left sensor oriented north
   else if (sensor_frente == 2){
     N =  4;     //Front-Mid sensor
     NE = 5;     //Front-Right sensor
-    EN = 6;     //Right-Front sensor
-    E  = 7;     //Right-Mid sensor
+    EN = 0;     //Right-Front sensor
+    E  = 1;     //Right-Mid sensor
   }
 
   //Back sensor oriented north
   else if (sensor_frente == 3){
     N =  7;     //Front-Mid sensor
     NE = 8;     //Front-Right sensor
-    EN = 9;     //Right-Front sensor
-    E  = 10;     //Right-Mid sensor
+    EN = 3;     //Right-Front sensor
+    E  = 4;     //Right-Mid sensor
   }
 
   //Right sensor oriented north
   else if (sensor_frente == 4){
     N =  10;     //Front-Mid sensor
     NE = 11;     //Front-Right sensor
-    EN = 0;     //Right-Front sensor
-    E  = 1;     //Right-Mid sensor
+    EN = 6;     //Right-Front sensor
+    E  = 7;     //Right-Mid sensor
   }
 
   //Calibrate the y axis
@@ -216,7 +217,10 @@ void calibrate_pickup(int sensor_frente)
       case 3: frente();     break;      //Back Sensor
       case 4: esquerda();   break;}     //Right sensor 
 
-    if (analogRead(EN) < limbo){
+    delay(10);
+    count++;
+
+    if (analogRead(EN) < limbo || count > 50){
       while (analogRead(E) > limbo){
         switch (sensor_frente){
           case 1: frente();       break;     //Front Sensor
@@ -229,6 +233,7 @@ void calibrate_pickup(int sensor_frente)
   }
 
   pause();
+  count = 0;
 
 
   //Calibrate the x axis
@@ -243,7 +248,10 @@ void calibrate_pickup(int sensor_frente)
       case 3: direita();      break;      //Back Sensor
       case 4: frente();       break;}     //Right sensor 
 
-    if (analogRead(NE) < limbo){
+    delay(10);
+    count++;
+
+    if (analogRead(NE) < limbo || count > 50){
       while (analogRead(N) > limbo){
         switch (sensor_frente){
           case 1: direita();   break;      //Front Sensor
@@ -256,16 +264,22 @@ void calibrate_pickup(int sensor_frente)
   }
 
   pause();
+  count = 0;
 
   //Calibrate orientation
   while (analogRead(N) > limbo || analogRead(E) > limbo)
   {  
-    Serial.print("\n A corrigir orientação");
-    anti();
-    if (analogRead(EN) < limbo){
+    Serial.print("\n A corrigir orientação");;
+    horario();
+
+    delay(10);
+    count++;
+
+    if (analogRead(EN) < limbo || count > 30){
       while (analogRead(E) > limbo && analogRead(N) > limbo){
-        horario();
+        anti();
       }
+      count = 0;
     }
   }
 
