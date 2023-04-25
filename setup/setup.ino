@@ -71,7 +71,7 @@
 //PWM Speed values
 #define FAST 175
 #define MEDIUM 100   //110
-#define SLOW 85      //99
+#define SLOW 85      //95
 
 //Infrared sensor values
 #define limbo 550       // ( 550 > x  - BRANCO ) 

@@ -6,7 +6,7 @@ void first_box()
   //**********************************************************
   //              GOES FROM POINT A TO POINT B 
   //**********************************************************
-  while (flag < 4)    // ignores 4 intersections
+  while (flag < 4)    // drives past 4 intersections
   {
 
     straight_line(orientation);
@@ -16,19 +16,22 @@ void first_box()
       {
         straight_line(orientation);     
       }
-      //pause();
+      Serial.print("\n Ultrapassou Interseção");
+      Serial.print(flag);
       flag++;       //After right sensor stops detecting black - counts 1 intersection
     }
   }
 
+  Serial.print("\n Caminho AB percorrido");
   pause();
 
-  //**********************************************************
 
-    //                 Correct position
-    //                 Correct orientation
+  //************************************
+  //  Correct position and orientation
+  //************************************
 
-  //**********************************************************
+  calibrate_pickup(orientation);
+  Serial.print("\n Calibração terminada");
 
 
   // **********************************************************
@@ -38,10 +41,13 @@ void first_box()
   // //Repeats until it correctly picks up the box
   while(digitalRead(BUTTON_F) == 1)
   {
+    int count = 0;
     //Drives straight ahead to try and grab box 
-    while(digitalRead(BUTTON_F) == 1)
+    while(digitalRead(BUTTON_F) == 1 && count < 100 )
     {
       frente();
+      delay(10);
+      count++;
 
     }
     pause();
@@ -53,6 +59,8 @@ void first_box()
     }
     pause();
   }
+
+  Serial.print("\n Primeira caixa coletada");
 
 
   //**********************************************************
