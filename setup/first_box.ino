@@ -123,8 +123,8 @@ void first_box()
   //************************************
   //  Correct position and orientation
   //************************************
-  // calibrate_axis_xy(orientation); 
-  // calibrate_orientation_xy(orientation);
+  calibrate_axis_xy(orientation); 
+  calibrate_orientation_xy(orientation);
   //************************************
 
 
@@ -133,19 +133,27 @@ void first_box()
   //                 DRIVES TO NEXT STATION
   // **********************************************************
   //DRIVE TO STATION 2 
-  // int flag = 0;
+  flag = 0;
 
-  // while(flag < 1)
-  // {
-  //   straight_line(orientation);
-  //   if (analogRead(linha_E3) < limbo)
-  //   {
-  //     while (analogRead(linha_E3) < limbo)
-  //     {
-  //       straight_line(orientation);
-  //     }
-  //     flag++;
-  //   }
-  // }
-  // pause();
+  while(flag < 1)
+  {
+    straight_line(1);
+    if (analogRead(linha_E3) < limbo)
+    {
+      while (analogRead(linha_E3) < limbo)
+      {
+        straight_line(1);
+      }
+      flag++;
+    }
+  }
+  pause();
+
+
+   //************************************
+  //  Correct position and orientation
+  //************************************
+  calibrate_axis_xy(orientation); 
+  calibrate_orientation_xy(orientation);
+  //************************************
 }
