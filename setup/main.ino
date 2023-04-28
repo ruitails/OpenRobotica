@@ -1,5 +1,5 @@
 void loop()
-{
+{ 
   int orientation = 1;
   straight_line(orientation);
 
@@ -9,15 +9,19 @@ void loop()
   while (true)
   {
     stop();
-  }
+  }  
+
 }
 
 
-
-  // Test code:
-
   // Serial.print("\n Sensor 1 = ");
-  // Serial.print(digitalRead(BUTTON_F));
+  // Serial.print(analogRead(linha_D1));
+  // Serial.print(" | ");
+  // Serial.print("\n Sensor 2 = ");
+  // Serial.print(analogRead(linha_D2));
+  // Serial.print(" | ");
+  // Serial.print("\n Sensor 3 = ");
+  // Serial.print(analogRead(linha_D3));
   // Serial.print(" | ");
 
   // delay(2000);

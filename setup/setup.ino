@@ -54,8 +54,8 @@
 //********************
 //Interruptores
 #define BUTTON_F 18
-#define BUTTON_E 20 
-#define BUTTON_T 21
+#define BUTTON_E 3 
+#define BUTTON_T 2
 #define BUTTON_D 19
 
 //Ímans
@@ -140,4 +140,14 @@ void setup(){
 
  
   Serial.begin(9600);
+  // while(!Serial) {}
+
+  // status = IMU.begin();
+  // if (status < 0) {
+  //   Serial.println("IMU initialization unsuccessful");
+  //   Serial.println("Check IMU wiring or try cycling power");
+  //   Serial.print("Status: ");
+  //   Serial.println(status);
+  //   while(1) {}
+  // }
 }

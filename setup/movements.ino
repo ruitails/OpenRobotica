@@ -118,10 +118,10 @@ void esquerda(){
     digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
 
-    analogWrite(PWM_A, MEDIUM);
-    analogWrite(PWM_B, SLOW);
-    analogWrite(PWM_C, SLOW);
-    analogWrite(PWM_D, SLOW);
+    analogWrite(PWM_A, (MEDIUM+5));
+    analogWrite(PWM_B, (MEDIUM+10));
+    analogWrite(PWM_C, (SLOW+5));
+    analogWrite(PWM_D, (SLOW+5));
 }
 
 //Diagonal Front-Right

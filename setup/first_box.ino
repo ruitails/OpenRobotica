@@ -29,17 +29,16 @@ void first_box()
   //************************************
   //  Correct position and orientation
   //************************************
-
-  calibrate_axis(orientation);
-  calibrate_orientation(orientation);
-  Serial.print("\n Calibração terminada");
+  calibrate_axis_xy(orientation);
+  calibrate_orientation_xy(orientation);
+  //************************************
 
 
   // **********************************************************
   //                    PICKS UP FIRST BOX
   // **********************************************************
 
-    flag = 0; 
+  flag = 0; 
 
   // //Repeats until it correctly picks up the box
   while(digitalRead(BUTTON_F) == 1)
@@ -85,31 +84,68 @@ void first_box()
   //                 ROTATES 90º (Clockwise)
   // **********************************************************
 
-  // horario();
-  // delay(300);
-
-  //ROTATE 90º (clockwise)
-  // while((analogRead(linha_E2) > limbo && analogRead(linha_D2) > limbo))
-  // {
-  //   horario();
-  // }
+  // ROTATE 90º (clockwise) - In order to get the LEFT SIDE of the car to FACE NORTH
+  while(analogRead(linha_D2) > limbo)
+  {
+    if (analogRead(linha_MEIO) < limbo)
+    {
+      horario();
+    }
+    else{calibrate_axis_x(orientation);}
+  }
   
-  // Serial.print("\n Rotação completada");
-  // pause();
+  Serial.print("\n Rotação completada");
+  pause();
 
 
-  // //GETS BACK ON THE TRACK 
-  // while(analogRead(linha_T2) > limbo && analogRead(linha_F2) > limbo)
+  //************************************
+  //  Correct position and orientation
+  //************************************
+  calibrate_axis_x(orientation); 
+  calibrate_orientation_x(orientation);
+  //************************************
+
+
+  // **********************************************************
+  //                 DRIVES BACK TO THE TRACK
+  // ********************************************************** 
+  while(analogRead(linha_F2) > limbo)
+  {
+    esquerda();
+  }
+  pause();
+
+
+  //Left side of the car facing north
+  orientation = 2;
+
+
+  //************************************
+  //  Correct position and orientation
+  //************************************
+  // calibrate_axis_xy(orientation); 
+  // calibrate_orientation_xy(orientation);
+  //************************************
+
+
+
+  // **********************************************************
+  //                 DRIVES TO NEXT STATION
+  // **********************************************************
+  //DRIVE TO STATION 2 
+  // int flag = 0;
+
+  // while(flag < 1)
   // {
-  //   esquerda();
+  //   straight_line(orientation);
+  //   if (analogRead(linha_E3) < limbo)
+  //   {
+  //     while (analogRead(linha_E3) < limbo)
+  //     {
+  //       straight_line(orientation);
+  //     }
+  //     flag++;
+  //   }
   // }
   // pause();
-
-
-  //**********************************************************
-
-    //                 Correct position
-    //                 Correct orientation
-
-  //**********************************************************
 }

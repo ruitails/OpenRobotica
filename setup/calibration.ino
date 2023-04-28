@@ -1,3 +1,6 @@
+// **********************************************************
+//               CALIBRATE STRAIGHT PATH
+// **********************************************************
 void straight_line(int sensor_frente)
 {
   /*If variable sensor_frente is:
@@ -8,48 +11,30 @@ void straight_line(int sensor_frente)
   */
 
   int NO, N, NE;
-  // int SO, S, SEA;
+  int count = 0;
 
   //Define which sensors are used in each case
-  //Front sensor oriented north
-  if (sensor_frente == 1){
-    NO = 0;     //Left-Front sensor
-    N =  1;     //Mid-Front sensor
-    NE = 2;     //Right-Front sensor
-    // SO = 8;     //Left-Back sensor
-    // S  = 7;     //Mid-Back sensor
-    // SEA = 6;    //Right-Back sensor
-  }
-
-  //Left sensor oriented north
-  else if (sensor_frente == 2){
-    NO = 3;     //Left-Front sensor
-    N =  4;     //Mid-Front sensor
-    NE = 5;     //Right-Front sensor
-    // SO = 11;    //Left-Back sensor
-    // S  = 10;    //Mid-Back sensor
-    // SEA = 9;    //Right-Back sensor
-  }
-
-  //Back sensor oriented north
-  else if (sensor_frente == 3){
-    NO = 6;     //Left-Front sensor
-    N =  7;     //Mid-Front sensor
-    NE = 8;     //Right-Front sensor
-    // SO = 2;     //Left-Back sensor
-    // S  = 1;     //Mid-Back sensor
-    // SEA = 0;    //Right-Back sensor
-  }
-
-  //Right sensor oriented north
-  else if (sensor_frente == 4){
-    NO = 9;     //Left-Front sensor
-    N =  10;    //Mid-Front sensor
-    NE = 11;    //Right-Front sensor
-    // SO = 5;     //Left-Back sensor
-    // S  = 4;     //Mid-Back sensor
-    // SEA = 3;    //Right-Back sensor
-  }
+  switch(sensor_frente){
+    case 1:       //Front sensor oriented north 
+      NO = 0;     //Left-Front sensor
+      N =  1;     //Mid-Front sensor
+      NE = 2;     //Right-Front sensor
+      break;
+    case 2:       //Left sensor oriented north
+      NO = 3;     //Left-Front sensor
+      N =  4;     //Mid-Front sensor
+      NE = 5;     //Right-Front sensor
+      break;
+    case 3:       //Back sensor oriented north
+      NO = 6;     //Left-Front sensor
+      N =  7;     //Mid-Front sensor
+      NE = 8;     //Right-Front sensor
+      break;
+    case 4:       //Right sensor oriented north
+      NO = 9;     //Left-Front sensor
+      N =  10;    //Mid-Front sensor
+      NE = 11;    //Right-Front sensor
+      break;}
 
 
   //**********************************************************
@@ -62,36 +47,46 @@ void straight_line(int sensor_frente)
     switch (sensor_frente)
     {     
       case 1: //Front Sensor
-        while(analogRead(linha_MEIO) > limbo){
-          // frente_esquerda();} 
-          esquerda();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          esquerda();
+          delay(10);
+          count++;
+        }
         break;
             
       case 2: //Left Sensor  
-        while(analogRead(linha_MEIO) > limbo){
-          // tras_esquerda();}  
-          tras();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          tras();
+          delay(10);
+          count++;
+        }
         break;  
           
       case 3: //Back Sensor
-        while(analogRead(linha_MEIO) > limbo){
-          // tras_direita();}   
-          direita();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          direita();
+          delay(10);
+          count++;
+        }
         break;   
 
       case 4: //Right sensor  
-        while(analogRead(linha_MEIO) > limbo){
-          // frente_direita();}  
-          frente();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          frente();
+          delay(10);
+          count++;
+        }
         break;       
     }
 
+    count = 0;
 
     //Car tilted to the right - rotates the robot 
     // while(analogRead(N) > limbo && analogRead(S) > limbo){
-    while(analogRead(N) > limbo){
+    while(analogRead(N) > limbo && count < 30){
       anti();
-      // horario();
+      delay(10);
+      count++;
     }
   }
 
@@ -106,35 +101,46 @@ void straight_line(int sensor_frente)
     switch (sensor_frente)
     {     
       case 1: //Front Sensor
-        while(analogRead(linha_MEIO) > limbo){
-          // frente_esquerda();} 
-          direita();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          direita();
+          delay(10);
+          count++;
+        }
         break;
             
       case 2: //Left Sensor  
-        while(analogRead(linha_MEIO) > limbo){
-          // tras_esquerda();}  
-          frente();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          frente();
+          delay(10);
+          count++;
+        }
         break;  
           
       case 3: //Back Sensor
-        while(analogRead(linha_MEIO) > limbo){
-          // tras_direita();}   
-          esquerda();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){   
+          esquerda();
+          delay(10);
+          count++;
+        }
         break;   
 
       case 4: //Right sensor  
-        while(analogRead(linha_MEIO) > limbo){
-          // frente_direita();}  
-          tras();}
+        while(analogRead(linha_MEIO) > limbo && count < 20){
+          tras();
+          delay(10);
+          count++;
+        }
         break;       
     }
 
+    count = 0;
+
     //Car tilted to the left - rotates the robot 
     // while(analogRead(N) > limbo && analogRead(S) > limbo){
-    while(analogRead(N) > limbo){
+    while(analogRead(N) > limbo && count < 30){
       horario();
-      // anti();
+      delay(10);
+      count++;
     }
   }
 
@@ -155,54 +161,51 @@ void straight_line(int sensor_frente)
 }
 
 
+// **********************************************************
+//               CALIBRATE AXIS (coordinates)
+// **********************************************************
 
-void calibrate_axis(int sensor_frente)
+void calibrate_axis_xy(int sensor_frente)
 {
   /*If variable sensor_frente is:
   1 - Car is oriented towards the front sensor (Oriented North)
   2 - Car is oriented towards the left sensor  (Oriented West)
-  3 - Car is oriented towards the right sensor (Oriented South)
-  4 - Car is oriented towards the back sensor  (Oriented Right)*/
+  3 - Car is oriented towards the back sensor  (Oriented South)
+  4 - Car is oriented towards the right sensor (Oriented Right)*/
 
   int N, NE, E, EN;
   int count = 0;
 
   //Define which sensors are used in each case
-  //Front sensor oriented north
-  if (sensor_frente == 1){
-    N =  1;     //Front-Mid sensor
-    NE = 2;     //Front-Right sensor
-    EN = 9;     //Right-Front sensor
-    E  = 10;     //Right-Mid sensor
-  }
-
-  //Left sensor oriented north
-  else if (sensor_frente == 2){
-    N =  4;     //Front-Mid sensor
-    NE = 5;     //Front-Right sensor
-    EN = 0;     //Right-Front sensor
-    E  = 1;     //Right-Mid sensor
-  }
-
-  //Back sensor oriented north
-  else if (sensor_frente == 3){
-    N =  7;     //Front-Mid sensor
-    NE = 8;     //Front-Right sensor
-    EN = 3;     //Right-Front sensor
-    E  = 4;     //Right-Mid sensor
-  }
-
-  //Right sensor oriented north
-  else if (sensor_frente == 4){
-    N =  10;     //Front-Mid sensor
-    NE = 11;     //Front-Right sensor
-    EN = 6;     //Right-Front sensor
-    E  = 7;     //Right-Mid sensor
+  switch(sensor_frente)
+  {
+    case 1:       //Front sensor oriented north
+      N =  1;     //Front-Mid sensor
+      NE = 2;     //Front-Right sensor
+      EN = 9;     //Right-Front sensor
+      E  = 10;     //Right-Mid sensor
+      break;
+    case 2:       //Left sensor oriented north
+      N =  4;     //Front-Mid sensor
+      NE = 5;     //Front-Right sensor
+      EN = 0;     //Right-Front sensor
+      E  = 1;     //Right-Mid sensor
+      break;
+    case 3:       //Back sensor oriented north
+      N =  7;     //Front-Mid sensor
+      NE = 8;     //Front-Right sensor
+      EN = 3;     //Right-Front sensor
+      E  = 4;     //Right-Mid sensor
+      break;
+    case 4:       //Right sensor oriented north
+      N =  10;    //Front-Mid sensor
+      NE = 11;    //Front-Right sensor
+      EN = 6;     //Right-Front sensor
+      E  = 7;     //Right-Mid sensor
+      break;
   }
 
   //Calibrate the y axis
-  Serial.print("\n Sensor E: ");
-  Serial.print(analogRead(E));
   while (analogRead(E) > limbo)
   {  
     Serial.print("\n A corrigir coordenadas y");
@@ -215,7 +218,7 @@ void calibrate_axis(int sensor_frente)
     delay(10);
     count++;
 
-    if (analogRead(EN) < limbo || count > 50){
+    if (analogRead(EN) < limbo || count > 20){
       while (analogRead(E) > limbo){
         switch (sensor_frente){
           case 1: frente();       break;     //Front Sensor
@@ -224,16 +227,14 @@ void calibrate_axis(int sensor_frente)
           case 4: direita();      break;     //Right sensor
         }
       }
+      count = 0;
     }
   }
 
   pause();
   count = 0;
 
-
   //Calibrate the x axis
-  Serial.print("\n Sensor N: ");
-  Serial.print(analogRead(N));
   while (analogRead(N) > limbo)
   {  
     Serial.print("\n A corrigir coordenadas x");
@@ -246,7 +247,7 @@ void calibrate_axis(int sensor_frente)
     delay(10);
     count++;
 
-    if (analogRead(NE) < limbo || count > 50){
+    if (analogRead(NE) < limbo || count > 20){
       while (analogRead(N) > limbo){
         switch (sensor_frente){
           case 1: direita();   break;      //Front Sensor
@@ -255,76 +256,204 @@ void calibrate_axis(int sensor_frente)
           case 4: tras();      break;      //Right sensor
         }
       }
+      count = 0;
     }
   }
+
   pause();
 }
 
 
-void calibrate_orientation(int sensor_frente)
+void calibrate_axis_x(int sensor_frente)
 {
   /*If variable sensor_frente is:
   1 - Car is oriented towards the front sensor (Oriented North)
   2 - Car is oriented towards the left sensor  (Oriented West)
-  3 - Car is oriented towards the right sensor (Oriented South)
-  4 - Car is oriented towards the back sensor  (Oriented Right)*/
+  3 - Car is oriented towards the back sensor  (Oriented South)
+  4 - Car is oriented towards the right sensor (Oriented Right)*/
 
-  int N, NO, E, EN;
+  int ON;
   int count = 0;
 
-  //Define which sensors are used in each case
-  //Front sensor oriented north
-  if (sensor_frente == 1){
-    N =  1;     //Front-Mid sensor
-    NO = 0;     //Front-Right sensor
-    EN = 9;     //Right-Front sensor
-    E  = 10;     //Right-Mid sensor
-  }
+  //Define which sensors are used in each case - Perpendicular with the x axis used 
+  switch(sensor_frente){
+    case 1:       //Front sensor oriented north 
+      ON = 5;     //Front-Right sensor
+      break;
+    case 2:       //Left sensor oriented north
+      ON = 8;     //Front-Right sensor
+      break;
+    case 3:       //Back sensor oriented north
+      ON = 11;     //Front-Right sensor
+      break;
+    case 4:       //Right sensor oriented north
+      ON = 2;    //Front-Right sensor
+      break;}
 
-  //Left sensor oriented north
-  else if (sensor_frente == 2){
-    N =  4;     //Front-Mid sensor
-    NO = 3;     //Front-Right sensor
-    EN = 0;     //Right-Front sensor
-    E  = 1;     //Right-Mid sensor
-  }
-
-  //Back sensor oriented north
-  else if (sensor_frente == 3){
-    N =  7;     //Front-Mid sensor
-    NO = 6;     //Front-Right sensor
-    EN = 3;     //Right-Front sensor
-    E  = 4;     //Right-Mid sensor
-  }
-
-  //Right sensor oriented north
-  else if (sensor_frente == 4){
-    N =  10;     //Front-Mid sensor
-    NO = 9;     //Front-Right sensor
-    EN = 6;     //Right-Front sensor
-    E  = 7;     //Right-Mid sensor
-  }
-
-
-  //Calibrate orientation
-  while (analogRead(N) > limbo || analogRead(linha_MEIO) > limbo)
+  //Calibrate the X axis
+  while (analogRead(linha_MEIO) > limbo)
   {  
-    Serial.print("\n A corrigir orientação");;
-    anti();
+    Serial.print("\n A corrigir coordenadas y");
+    switch (sensor_frente){
+      case 1: tras();       break;    //Front Sensor
+      case 2: direita();    break;    //Left Sensor
+      case 3: frente();     break;    //Back Sensor
+      case 4: esquerda();   break;}   //Right sensor 
+
+    
 
     delay(10);
     count++;
 
-    if (analogRead(EN) < limbo || analogRead(NO) < limbo || count > 30){
-      while (analogRead(E) > limbo && analogRead(N) > limbo){
-        horario();
+    if ((analogRead(ON) < limbo && analogRead(linha_MEIO) > limbo) || count > 20){
+      while (analogRead(linha_MEIO) > limbo){
+          switch (sensor_frente){
+            case 1: frente();     break;    //Front Sensor
+            case 2: esquerda();   break;    //Left Sensor
+            case 3: tras();       break;    //Back Sensor
+            case 4: direita();    break;}   //Right sensor 
       }
       count = 0;
     }
+  }
 
-    if (analogRead(linha_MEIO) > limbo){
-      calibrate_orientation(sensor_frente);
+  pause();
+}
+
+
+
+// **********************************************************
+//              CALIBRATE ORIENTATION (theta)
+// **********************************************************
+
+void calibrate_orientation_xy(int sensor_frente)
+{
+  /*If variable sensor_frente is:
+  1 - Car is oriented towards the front sensor (Oriented North)
+  2 - Car is oriented towards the left sensor  (Oriented West)
+  3 - Car is oriented towards the back sensor  (Oriented South)
+  4 - Car is oriented towards the right sensor (Oriented Right)*/
+
+  int N, NO, E, EN;
+  int count = 0;
+
+  //Define which sensors are used in each case - Parallel with the y axis used 
+  switch(sensor_frente)
+  {
+    case 1:       //Front sensor oriented north
+      N =  1;     //Front-Mid sensor
+      NO = 0;     //Front-Right sensor
+      EN = 9;     //Right-Front sensor
+      E  = 10;     //Right-Mid sensor
+      break;
+    case 2:       //Left sensor oriented north
+      N =  4;     //Front-Mid sensor
+      NO = 3;     //Front-Right sensor
+      EN = 0;     //Right-Front sensor
+      E  = 1;     //Right-Mid sensor
+      break;
+    case 3:       //Back sensor oriented north
+      N =  7;     //Front-Mid sensor
+      NO = 6;     //Front-Right sensor
+      EN = 3;     //Right-Front sensor
+      E  = 4;     //Right-Mid sensor
+      break;
+    case 4:       //Right sensor oriented north
+      N =  10;    //Front-Mid sensor
+      NO = 9;    //Front-Right sensor
+      EN = 6;     //Right-Front sensor
+      E  = 7;     //Right-Mid sensor
+      break;
+  }
+
+
+  //Calibrate orientation
+  while (analogRead(N) > limbo && analogRead(E) > limbo)
+  {  
+    if(analogRead(linha_MEIO) < limbo)
+    {
+      Serial.print("\n A corrigir orientação");
+      anti();
+
+      delay(10);
+      count++;
+
+      if (analogRead(EN) < limbo || analogRead(NO) < limbo || count > 30){
+        while (analogRead(E) > limbo && analogRead(N) > limbo){
+          horario();
+        }
+        count = 0;
+      }
     }
+
+    else{calibrate_axis_xy(sensor_frente);}
+  }
+
+  pause();
+}
+
+
+void calibrate_orientation_x(int sensor_frente)
+{
+  /*If variable sensor_frente is:
+  1 - Car is oriented towards the front sensor (Oriented North)
+  2 - Car is oriented towards the left sensor  (Oriented West)
+  3 - Car is oriented towards the back sensor  (Oriented South)
+  4 - Car is oriented towards the right sensor (Oriented Right)*/
+
+  int O, OS, E, EN;
+  int count = 0;
+
+  //Define which sensors are used in each case - Perpendicular with the x axis used
+  switch(sensor_frente)
+  {
+    case 1:       //Front sensor oriented north
+      O =  4;     //Left-Mid sensor
+      OS = 3;     //Left-Front sensor
+      EN = 9;     //Right-Front sensor
+      E  = 10;    //Right-Mid sensor
+      break;
+    case 2:       //Left sensor oriented north
+      O =  7;     //Left-Mid sensor
+      OS = 6;     //Left-Front sensor
+      EN = 0;     //Right-Front sensor
+      E  = 1;     //Right-Mid sensor
+      break;
+    case 3:       //Back sensor oriented north
+      O =  10;    //Left-Mid sensor
+      OS = 9;    //Left-Front sensor
+      EN = 3;     //Right-Front sensor
+      E  = 4;     //Right-Mid sensor
+      break;
+    case 4:       //Right sensor oriented north
+      O =  1;     //Left-Mid sensor
+      OS = 0;     //Left-Front sensor
+      EN = 6;     //Right-Front sensor
+      E  = 7;     //Right-Mid sensor
+      break;
+  }
+
+
+  //Calibrate orientation
+  while (analogRead(O) > limbo || analogRead(E) > limbo)
+  {  
+    if (analogRead(linha_MEIO) < limbo)
+    {
+      Serial.print("\n A corrigir orientação");
+      horario();
+
+      delay(10);
+      count++;
+
+      if (analogRead(OS) < limbo || analogRead(EN) < limbo || count > 30){
+        while (analogRead(O) > limbo && analogRead(E) > limbo){
+          anti();
+        }
+        count = 0;
+      }
+    }
+
+    else {calibrate_axis_x(sensor_frente);}
   }
 
   pause();
