@@ -4,6 +4,7 @@ void loop()
   straight_line(orientation);
 
   first_box();
+  second_box();
 
   Serial.print("\n Stopping....");
   while (true)
