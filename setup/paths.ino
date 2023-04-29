@@ -94,18 +94,15 @@ void path_CF()
 //PATH F_E
 void path_FE()
 {
-  int orientation = 1, flag = 0;
+  int orientation = 1;
 
-  while (flag < 4)    // drives past 4 intersections
+  frente();
+  delay(500);
+
+  while (analogRead(linha_E3) > limbo)
   {
-    straight_line(orientation);
-    if (analogRead(linha_D1) < limbo)
-    {
-      while (analogRead(linha_D1) < limbo){
-        straight_line(orientation); }
-
-      flag++;       
-      pause();
-    }
+    straight_line(orientation); 
   }
+
+  pause();
 }

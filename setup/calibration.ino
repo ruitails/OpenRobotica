@@ -227,7 +227,7 @@ void calibrate_axis_x(int sensor_frente)
     delay(5);
     count++;
 
-    if (analogRead(ON) < limbo || count > 60){
+    if (analogRead(ON) < limbo || count > 80){
       count = 0;
       while (analogRead(linha_MEIO) > limbo){
           switch (sensor_frente){
@@ -237,7 +237,7 @@ void calibrate_axis_x(int sensor_frente)
             case 4: direita();    break;}   //Right sensor
         delay(5);
         count++;
-        if(count > 60){break;}
+        if(count > 100){break;}
       }
       count = 0;
     }
@@ -289,10 +289,8 @@ void calibrate_orientation_xy(int orientation)
   //Calibrate orientation
   while (analogRead(N) > limbo && analogRead(E) > limbo)
   {  
-    // if(analogRead(linha_MEIO) < limbo)
-    // {
+ 
       Serial.print("\n A corrigir orientação");
-      // anti();
       horario();
 
       delay(5);
@@ -300,14 +298,10 @@ void calibrate_orientation_xy(int orientation)
 
       if (analogRead(EN) < limbo || analogRead(NO) < limbo || count > 60){
         while (analogRead(E) > limbo && analogRead(N) > limbo){
-          // horario();
           anti();
         }
         count = 0;
       }
-    // }
-
-    // else{calibrate_axis_xy(orientation);}
   }
 
   pause();
@@ -352,8 +346,6 @@ void calibrate_orientation_x(int orientation)
   //Calibrate orientation
   while (analogRead(O) > limbo || analogRead(E) > limbo)
   {  
-    // if (analogRead(linha_MEIO) < limbo)
-    // {
       Serial.print("\n A corrigir orientação");
       horario();
 
@@ -366,9 +358,6 @@ void calibrate_orientation_x(int orientation)
         }
         count = 0;
       }
-    // }
-
-    // else {calibrate_axis_x(orientation);}
   }
 
   pause();

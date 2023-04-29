@@ -56,7 +56,7 @@ void horario(){
     digitalWrite(D2, HIGH);
 
     analogWrite(PWM_A, MEDIUM+5);
-    analogWrite(PWM_B, SLOW+5);
+    analogWrite(PWM_B, MEDIUM+5);
     analogWrite(PWM_C, SLOW+5);
     analogWrite(PWM_D, SLOW+5);
 }
@@ -77,7 +77,7 @@ void anti(){
     digitalWrite(D2, LOW);
 
     analogWrite(PWM_A, MEDIUM+5);
-    analogWrite(PWM_B, SLOW+5);
+    analogWrite(PWM_B, MEDIUM+5);
     analogWrite(PWM_C, SLOW+5);
     analogWrite(PWM_D, SLOW+5);
 }
@@ -118,10 +118,10 @@ void esquerda(){
     digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
 
-    analogWrite(PWM_A, (MEDIUM+15));
+    analogWrite(PWM_A, (MEDIUM+19));
     analogWrite(PWM_B, (MEDIUM+19));
-    analogWrite(PWM_C, (SLOW+15));
-    analogWrite(PWM_D, (SLOW+15));
+    analogWrite(PWM_C, (SLOW+10));
+    analogWrite(PWM_D, (SLOW+10));
 }
 
 //Diagonal Front-Right

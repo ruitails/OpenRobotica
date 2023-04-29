@@ -89,6 +89,28 @@ void rotate(int sensor_frente)
     // }
     // else{calibrate_axis_x(sensor_frente);}
   }
+
+  pause();
+}
+
+//Rotates the car -90º (Anti-clockwise)
+void inverse_rotate(int sensor_frente)
+{
+  int E_MID;
+
+  switch(sensor_frente){
+    case 1: E_MID = 10; break;  //Front sensor oriented north 
+    case 2: E_MID = 1;  break;  //Left sensor oriented north 
+    case 3: E_MID = 4;  break;  //Back sensor oriented north 
+    case 4: E_MID = 7;  break;  //Right sensor oriented north 
+  }
+
+  while(analogRead(E_MID) > limbo)
+  {
+      anti();
+  }
+
+  pause();
 }
 
 //Makes the car drive west (to the left side) until it reaches the desired position (reaches the track)

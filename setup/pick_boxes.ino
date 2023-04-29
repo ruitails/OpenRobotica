@@ -74,7 +74,6 @@ void first_box()
   //  Correct position and orientation
   //************************************
   calibrate_axis_x(orientation); 
-  // calibrate_orientation_x(orientation);
   //************************************
 
 
@@ -257,7 +256,6 @@ void third_box()
   // calibrate_orientation_xy(orientation);
   //********************
 } 
-
 
 
 void forth_box()
