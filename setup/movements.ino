@@ -13,8 +13,8 @@ void frente(){
     digitalWrite(D1, HIGH);
     digitalWrite(D2, LOW);
 
-    analogWrite(PWM_A, MEDIUM);
-    analogWrite(PWM_B, SLOW);
+    analogWrite(PWM_A, SLOW+9);
+    analogWrite(PWM_B, SLOW+6);
     analogWrite(PWM_C, SLOW);
     analogWrite(PWM_D, SLOW);
 }
@@ -34,8 +34,8 @@ void tras(){
     digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
 
-    analogWrite(PWM_A, MEDIUM);
-    analogWrite(PWM_B, SLOW);
+    analogWrite(PWM_A, SLOW+8);
+    analogWrite(PWM_B, SLOW+6);
     analogWrite(PWM_C, SLOW);
     analogWrite(PWM_D, SLOW);
 }
@@ -99,8 +99,8 @@ void direita(){
 
     analogWrite(PWM_A, (MEDIUM+10));
     analogWrite(PWM_B, (MEDIUM+15));
-    analogWrite(PWM_C, (SLOW+10));
-    analogWrite(PWM_D, (SLOW+10));
+    analogWrite(PWM_C, (SLOW+18));
+    analogWrite(PWM_D, (SLOW+18));
 }
 
 //Turn Left
@@ -118,14 +118,13 @@ void esquerda(){
     digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
 
-    analogWrite(PWM_A, (MEDIUM+10));
-    analogWrite(PWM_B, (MEDIUM+15));
-    analogWrite(PWM_C, (SLOW+10));
-    analogWrite(PWM_D, (SLOW+10));
+    analogWrite(PWM_A, (MEDIUM+15));
+    analogWrite(PWM_B, (MEDIUM+19));
+    analogWrite(PWM_C, (SLOW+15));
+    analogWrite(PWM_D, (SLOW+15));
 }
 
 //Diagonal Front-Right
-
 void frente_esquerda(){
     //Front
     digitalWrite(A1, LOW);
@@ -147,7 +146,6 @@ void frente_esquerda(){
 }
 
 //Diagonal Front-Left
-
 void frente_direita(){
     //STOP
     digitalWrite(A1, HIGH);
@@ -226,7 +224,6 @@ void stop(){
     analogWrite(PWM_C, 0);
     analogWrite(PWM_D, 0);
 }
-
 
 //Pause movement for 0.5s
 void pause()

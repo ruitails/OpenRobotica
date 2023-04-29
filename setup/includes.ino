@@ -1,12 +1,13 @@
-//Picks up the desired box (implemented with touro mode)
-void pick_box(int sensor_frente)
-{
-  /*If variable sensor_frente is:
+/*If variable sensor_frente is:
   1 - Car is oriented towards the front sensor (Oriented North)
   2 - Car is oriented towards the left sensor (Oriented West)
   3 - Car is oriented towards the right sensor (Oriented South)
-  4 - Car is oriented towards the back sensor (Oriented Right)*/
-  
+  4 - Car is oriented towards the back sensor (Oriented Right)
+*/
+
+//Picks up the desired box (implemented with touro mode)
+void pick_box(int sensor_frente)
+{ 
   int BUTTON, NE, flag = 0;
 
   switch(sensor_frente){

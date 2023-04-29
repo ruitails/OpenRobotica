@@ -3,64 +3,37 @@ void first_box()
   int flag = 0;               //Flag set to 0 in order to help count the number of intersections
   int orientation = 1;        //Front of the car facing north
 
-  //**********************************************************
-  //              GOES FROM POINT A TO POINT B 
-  //**********************************************************
-  while (flag < 4)    // drives past 4 intersections
-  {
-
-    straight_line(orientation);
-    if (analogRead(linha_D1) < limbo)   //Right sensor detecting black
-    {
-      while (analogRead(linha_D1) < limbo)
-      {
-        straight_line(orientation);     
-      }
-      Serial.print("\n Ultrapassou Interseção");
-      Serial.print(flag);
-      flag++;       //After right sensor stops detecting black - counts 1 intersection
-      pause();
-      frente();
-      delay(500);
-    }
-  }
-
-  Serial.print("\n Caminho AB percorrido");
-  pause();
-
+  path_AB();
 
   //************************************
   //  Correct position and orientation
   //************************************
-  calibrate_axis_xy(orientation);
+  if(analogRead(linha_MEIO) > limbo) {calibrate_axis_xy(orientation);}
   calibrate_orientation_xy(orientation);
   //************************************
 
 
   // **********************************************************
   //                    PICKS UP FIRST BOX
-  // **********************************************************
+  // ********************************************************** 
 
-  flag = 0; 
-
-  // //Repeats until it correctly picks up the box
+  //Repeats until it correctly picks up the box
   while(digitalRead(BUTTON_F) == 1)
   {
     int count = 0;
 
-    Serial.print("\n CHAAARGE");
-    //Drives straight ahead to try and grab box 
+    //Drives straight ahead to try and grab box
+    Serial.print("\n Forwards"); 
     while(digitalRead(BUTTON_F) == 1 && count < 100 )
     {
       frente();
       delay(10);
       count++;
-
     }
     pause();
 
-    Serial.print("\n PI PI PI PI ...");
     //Reverses 
+    Serial.print("\n Backwards");
     while(analogRead(linha_F3) > limbo)
     {
       tras();
@@ -74,8 +47,8 @@ void first_box()
   //In order to guarantee that the car reverses - happens when the box gets picked up before expected
   if (flag == 0)
   {
-    Serial.print("\n PI PI PI PI ...");
-    //Reverses 
+    //Reverses
+    Serial.print("\n Backwards"); 
     while(analogRead(linha_F3) > limbo){
       tras();
     }
@@ -90,11 +63,7 @@ void first_box()
   // ROTATE 90º (clockwise) - In order to get the LEFT SIDE of the car to FACE NORTH
   while(analogRead(linha_D2) > limbo)
   {
-    if (analogRead(linha_MEIO) < limbo)
-    {
-      horario();
-    }
-    else{calibrate_axis_x(orientation);}
+    horario();
   }
   
   Serial.print("\n Rotação completada");
@@ -132,33 +101,33 @@ void first_box()
 
 
 
-  // **********************************************************
-  //                 DRIVES TO NEXT STATION
-  // **********************************************************
-  //DRIVE TO STATION 2 
-  flag = 0;
+  // // **********************************************************
+  // //                 DRIVES TO NEXT STATION
+  // // **********************************************************
+  // //DRIVE TO STATION 2 
+  // flag = 0;
 
-  while(flag < 1)
-  {
-    straight_line(1);
-    if (analogRead(linha_E3) < limbo)
-    {
-      while (analogRead(linha_E3) < limbo)
-      {
-        straight_line(1);
-      }
-      flag++;
-    }
-  }
-  pause();
+  // while(flag < 1)
+  // {
+  //   straight_line(1);
+  //   if (analogRead(linha_E3) < limbo)
+  //   {
+  //     while (analogRead(linha_E3) < limbo)
+  //     {
+  //       straight_line(1);
+  //     }
+  //     flag++;
+  //   }
+  // }
+  // pause();
 
 
-   //************************************
-  //  Correct position and orientation
-  //************************************
-  calibrate_axis_xy(orientation); 
-  calibrate_orientation_xy(orientation);
-  //************************************
+  //  //************************************
+  // //  Correct position and orientation
+  // //************************************
+  // calibrate_axis_xy(orientation); 
+  // calibrate_orientation_xy(orientation);
+  // //************************************
 }
 
 

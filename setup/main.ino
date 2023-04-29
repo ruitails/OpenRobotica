@@ -1,24 +1,19 @@
 void loop()
 { 
   int orientation = 1;
-  straight_line(orientation);
 
   first_box();
-  // second_box();
-  // third_box();
-  // forth_box();
 
-  // path_BC();
+  path_BC();
 
-  Serial.print("\n Caminho AB percorrido");
-  pause();
+  rotate(orientation);
 
-  Serial.print("\n Stopping....");
-  while (true)
-  {
-    stop();
-  }  
+  path_CF();
+
+  while (true){stop();}  
 }
+
+
 
 
   // Serial.print("\n Sensor 1 = ");
