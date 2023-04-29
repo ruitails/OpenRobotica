@@ -14,7 +14,7 @@ void frente(){
     digitalWrite(D2, LOW);
 
     analogWrite(PWM_A, SLOW+9);
-    analogWrite(PWM_B, SLOW+6);
+    analogWrite(PWM_B, SLOW+7);
     analogWrite(PWM_C, SLOW);
     analogWrite(PWM_D, SLOW);
 }
@@ -55,10 +55,10 @@ void horario(){
     digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
 
-    analogWrite(PWM_A, MEDIUM);
-    analogWrite(PWM_B, SLOW);
-    analogWrite(PWM_C, SLOW);
-    analogWrite(PWM_D, SLOW);
+    analogWrite(PWM_A, MEDIUM+5);
+    analogWrite(PWM_B, SLOW+5);
+    analogWrite(PWM_C, SLOW+5);
+    analogWrite(PWM_D, SLOW+5);
 }
     
 //Turn Anti-Clockwise
@@ -76,10 +76,10 @@ void anti(){
     digitalWrite(D1, HIGH);
     digitalWrite(D2, LOW);
 
-    analogWrite(PWM_A, MEDIUM);
-    analogWrite(PWM_B, SLOW);
-    analogWrite(PWM_C, SLOW);
-    analogWrite(PWM_D, SLOW);
+    analogWrite(PWM_A, MEDIUM+5);
+    analogWrite(PWM_B, SLOW+5);
+    analogWrite(PWM_C, SLOW+5);
+    analogWrite(PWM_D, SLOW+5);
 }
 
 //Turn right

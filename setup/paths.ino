@@ -35,58 +35,77 @@ void path_AB()
 //PATH B_C
 void path_BC()
 {
-  int orientation = 2, flag = 0;
+  int orientation = 1, flag = 0;
+
+  frente();
+  delay(500);
 
   while (flag < 2)    // drives past 2 intersections
   {
-    straight_line(1);
+    straight_line(orientation);
     if (analogRead(linha_E1) < limbo)
     {
       while (analogRead(linha_E1) < limbo){
-        straight_line(1); 
+        straight_line(orientation); 
       }
+      flag++;
+      stop();
     }
+    
   }
 
   while (analogRead(linha_D1) > limbo)
   {
-    straight_line(1);
+    straight_line(orientation);
   }
+
+  stop();
 
   Serial.print("\n Caminho BC percorrido");
   pause();
 }
 
 //PATH C_F
-void path_CF() {
-  int flag = 0;         //Flag set to 0 in order to help count the number of intersections
-  int orientation = 1;  //Front of the car facing north
-  int flag2 = 0;
+void path_CF() 
+{
+  int orientation = 1, flag = 0;
 
-  //**
-  //              GOES FROM POINT C TO POINT F
-  //**
-  while (flag < 3)  // drives past 4 intersections
+  // calibrate_axis_xy(orientation);
+
+  frente();
+  delay(500);
+
+
+  while (flag < 3)    // drives past 4 intersections
   {
-
     straight_line(orientation);
-    if (analogRead(linha_D1) < limbo)  //Right sensor detecting black
+    if (analogRead(linha_E3) < limbo)
     {
-      while (analogRead(linha_D1) < limbo) {
-        straight_line(orientation);
-      }
-      Serial.print("\n Ultrapassou Interseção");
-      Serial.print(flag);
-      if (flag2 == 0)
-        delay(250);
-      flag++;  //After right sensor stops detecting black - counts 1 intersection
-      flag2++;
+      while (analogRead(linha_E3) < limbo){
+        straight_line(orientation); }
+
+      flag++;       
       pause();
-      frente();
-      delay(500);
     }
   }
+}
 
-  Serial.print("\n Caminho CF percorrido");
-  pause();
+
+//PATH F_E
+void path_FE()
+{
+  int orientation = 1, flag = 0;
+
+  while (flag < 4)    // drives past 4 intersections
+  {
+    straight_line(orientation);
+    if (analogRead(linha_D1) < limbo)
+    {
+      while (analogRead(linha_D1) < limbo){
+        straight_line(orientation); }
+
+      flag++;       
+      pause();
+    }
+  }
 }

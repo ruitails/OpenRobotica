@@ -72,12 +72,6 @@ void pick_box(int sensor_frente)
 //Rotates the car 90º (clockwise)
 void rotate(int sensor_frente)
 {
-  /*If variable sensor_frente is:
-  1 - Car is oriented towards the front sensor (Oriented North)
-  2 - Car is oriented towards the left sensor (Oriented West)
-  3 - Car is oriented towards the right sensor (Oriented South)
-  4 - Car is oriented towards the back sensor (Oriented Right)*/
-  
   int E_MID;
 
   switch(sensor_frente){
@@ -89,11 +83,11 @@ void rotate(int sensor_frente)
 
   while(analogRead(E_MID) > limbo)
   {
-    if (analogRead(linha_MEIO) < limbo)
-    {
+    // if (analogRead(linha_MEIO) < limbo)
+    // {
       horario();
-    }
-    else{calibrate_axis_x(sensor_frente);}
+    // }
+    // else{calibrate_axis_x(sensor_frente);}
   }
 }
 

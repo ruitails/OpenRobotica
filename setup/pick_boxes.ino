@@ -8,7 +8,7 @@ void first_box()
   //************************************
   //  Correct position and orientation
   //************************************
-  if(analogRead(linha_MEIO) > limbo) {calibrate_axis_xy(orientation);}
+  calibrate_axis_xy(orientation);
   calibrate_orientation_xy(orientation);
   //************************************
 
@@ -74,7 +74,7 @@ void first_box()
   //  Correct position and orientation
   //************************************
   calibrate_axis_x(orientation); 
-  calibrate_orientation_x(orientation);
+  // calibrate_orientation_x(orientation);
   //************************************
 
 
